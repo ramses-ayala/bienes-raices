@@ -1,0 +1,562 @@
+/*VALORES POR DEFECTO DE propiedad font-weight: etiqueta p:400 y h1:700 */
+
+html{
+	box-sizing: border-box;		/* 1-2 CODIGO ESPECIAL*/
+	font-size: 62.5%; /* 62.5% es igual 10px de 16 px*/
+}
+
+*, *:before, *:after { 			/*2-2 CODIGO ESPECIAL estos codigos (1-2 , 2-2) sirve para por 
+								ejemplo si se le da un ancho a una etiqueta de bloque se establesca ese
+								ancho y no incremente cuando se le da un padding o un borde*/
+	box-sizing: inherit;
+}
+
+body{
+	
+	font-family: 'Slabo 27px', serif;
+	font-size:1.6rem;
+	line-height:2;		/*esta propiedad es como el interlineado*/
+}
+
+/*GLOBAL*/
+
+.contenedor{
+	max-width: 120rem; /*este valor se estara cambiando por 120 y 90rem por las PC*/
+	margin: 0 auto;		/*esta propiedad es para centrar contenedores, y va de la mano de max-width*/
+	
+	
+	width:95%;			/*esta propiedad se agrego para que tegnga un pequeño margen
+						la pagina al verla en un dispositivo movil*/
+}
+
+h1{
+	font-size: 3.8rem;
+}
+
+h2{
+	font-size: 3.4rem;
+}
+
+h3{
+	font-size: 3rem;
+}
+
+h4{
+	font-size: 2.6rem;
+}
+
+img{
+	max-width:100%;
+}
+
+/*UTILIDADES*/
+
+.fw-100{
+	font-weight:100;
+}
+
+.centrar-texto{
+	text-align:center;
+}
+
+.d-block{
+	display:block!important;
+}
+
+.contenido-centrado{
+	max-width:600px;
+}
+
+/*header*/
+
+.site-header.inicio{
+    background-image: url(../img/header.jpg); 
+    background-position: center center; /*propiedad que indica que se muestre la imagen desde el centro */
+    background-size: cover;
+	height: 100vh;              /* vh = viewport height: funcion que determina el tamaño de la pantalla y la altura de la imagen va ser de ese tamaño
+								en este caso la imagen completa se va visualizar y no se vera cortada
+                                es decir no veremos la imagen completa hasta que se de scroll*/
+    min-height: 60rem;
+}
+
+.contenido-header{	/*clase hijo de site-header.inicio */
+	display: flex;
+	flex-direction: column;
+	height: 100%;				/*esta propiedad toma la altura de su clase padre que ya tiene previamente, es decir del viewport height */
+	justify-content:space-between;
+	text-align:center;				/*esta propiedad se agrego para el diseño para dispositivos
+									moviles para poner al centro los elementos que estan en
+									esta clase, que son la barra, el logo, navegacion y el h1
+									con la descripcion de la pagina*/
+}
+
+@media (min-width:768px){
+	
+	.contenido-header{
+		text-align:left;
+	}
+	
+}
+
+.contenido-header h1 {
+	color:white;
+	max-width: 50rem;	/*esta propiedad en este caso sirvio para cortar el texto del encabezado*/
+}
+
+.barra{				
+	padding-top:3rem;
+}
+
+@media (min-width:768px){
+	.barra{
+		align-items:center;		/*esta propiedad es para alinear los elementos que estan dentro de esta clase, 
+								en este ejemplo el enlace del logo y la navegacion del index.html*/
+		display: flex;
+		justify-content:space-between;
+		
+	}
+}
+
+/*NAVEGACION DEL HEADER*/
+.navegacion a {
+	color:white;
+	display:block;
+	font-size:2.2rem;
+	text-decoration:none;
+
+}
+
+@media (min-width:768px){
+	.navegacion a {
+		display:inline-block;		
+		font-size:1.8rem;
+		margin-right:1.5rem;
+	}
+	
+	.navegacion a:last-of-type{
+		margin:0;
+	}
+}
+
+/* ESTILOS PARA LA SECCION DE MAS SOBRE NOSOTROS */
+
+.seccion{		/*clase que se utiliza para establecer espacio entre secciones*/
+	margin-top:2rem;
+	margin-bottom:2rem;
+}
+
+
+@media (min-width:768px){
+	.iconos-nosotros{
+		display:flex;
+		justify-content:space-between;
+	}
+}
+
+.icono{
+	text-align:center; 	/* este atributo alinea texto e incluso imagenes junto con el texto
+						toma diferentes valores como: left, right justify, los mas utilizados*/
+}
+
+@media (min-width:768px){
+	.icono{
+		flex-basis:calc(33.3% - 1rem)	  /*funcion que sirve para hacer del mismo tamaño los elementos y establecer una separacion entre
+											los elementos que es en este caso 1rem o 10px*/
+	}
+	
+}
+
+.icono h3{
+	text-transform:uppercase; /* valores mas utilizados lowercase, uppercase capitalize*/
+}
+
+/*ESTILOS PARA SECCION DE ANUNCIOS*/
+
+@media (min-width:768px){				/*esta media query es para que los anuncios se muestren
+										uno de tras de otro*/
+	.contenedor-anuncios{
+		display:flex;
+		flex-wrap:wrap;					/*--------*//*esta propiedad se utilizo para la pagina de Anuncios.html*/
+		justify-content:space-between;
+	}
+}
+
+.anuncio{
+	background-color: #F5F5F5;
+	border: .1rem solid #B5B5B5; 	/*medida tipo de borde color*/ 
+									/*le puse el valor de .1rem e vez de 1px, que en esencia es lo mismo*/	
+	
+	flex-grow:0;					/*--------*//*la propiedad flex-grow con valor de 1 es para que el contenido de esta clase 
+									cresca, sí es posible y con valor de 0 no crece se queda del tamaño de la base
+									flex-basis*/	/*esta propiedad se utilizo como ejemplo para la pagina de Anuncios.html*/
+	
+	flex-shrink:0;					/*--------*//*esta propiedad es para que el contenido de esta clase no se haga mas pequeño. 
+									por defecto tienen el valor de 1 pero con el valor de 0 va agarrar el tamaño
+									de la base flex-basis*/		/*esta propiedad se utilizo para la pagina de Anuncios.html*/
+									
+									/*tambien existe la version corta de flex-basis, flex-grow y flex-shrink,
+									es con la propiedad flex: 0 0 calc(33.3% - 1rem), empezando por flex-grow
+									flex-shrink y flex-basis*/
+	margin-bottom:2rem;
+}
+
+@media (min-width:768px){
+	.anuncio{
+		flex-basis:calc(33.3% - 1rem);
+	}
+	
+}
+
+.contenido-anuncio{
+	padding: 2rem;
+}
+
+.contenido-anuncio h3,.contenido-anuncio p{
+	margin:0;
+}
+
+.precio{
+	color: #71B100;
+}
+
+.iconos-caracteristicas{
+	display:flex; 					/*esto es para que cada elemento o punto de la lista se colocara de forma horizontal*/
+	
+	flex:1;							/*--------*//*esta propiedad se utilizo en la pagina de anuncio.html*/
+	
+	justify-content:space-around;
+	
+	list-style:none;				/*esta propiedad es para eliminar las viñetas*/
+	
+	max-width:500px;				/*--------*//*esta propiedad se utilizo en la pagina de anuncio.html 
+									para hacer pequeña la lista de iconos en cuanto a su ancho evidentemente, 
+									ya que tomaba todo el espacio disponible por el justify-content, 
+									pero no afecta a la lista de la pagina principal*/
+	padding:0;
+}
+.iconos-caracteristicas li{
+	display: flex;					/*aqui tambien se coloco este codigo, pero aqui es para que la imagen y el texto del precio aparesca
+									uno tras otro es decir tambien de manera horizontal*/		
+}
+.iconos-caracteristicas li img{
+	margin-right:2rem;				/* esto es para generar un espacio entre*/
+	
+}
+
+
+/*		ESTILOS PARA LOS BOTONES		*/
+
+/*por defecto los enlaces tienen un display inline, si se quiere agregarle un ancho padding etc, se
+tiene que cambiar la propiedad display a block o inline-block*/
+
+.boton{
+	color:white;
+	cursor:pointer;
+	border:none;
+	display: inline-block;
+	font-size: 1.8rem;
+	font-weight: 700;
+	margin-top:3rem;
+	padding:1rem 3rem;
+	text-align:center;
+	text-decoration: none;
+	display:block;
+	flex:0 0 100%;
+}
+
+@media (min-width:768px){
+	.boton{
+		display:inline-block;		/*para que el tamaño lo asignen el margin y el padding*/
+		flex:0 0 100%;
+	}
+}
+
+.boton-amarillo{
+	background-color: #e08709;
+}
+
+.boton-verde{
+	background-color: #71B100;
+}
+
+.ver-todas{
+	text-align: center;
+}
+
+/*ESTILOS PARA LA PARTE DE CONTACTO*/
+
+.imagen-contacto{
+	
+	align-items:center;
+	background-image: url(../img/encuentra.jpg);
+	background-position:center center;
+	background-size:cover;
+	display:flex;
+	height:40rem;
+	
+}
+
+.contenido-contacto{
+	flex:0 0 95%;		/*el ultimo valor se puso a 95 para que el contenido no se visualice
+						hasta la orilla de la pantalla*/
+	color:white;
+}
+
+.contenido-contacto p{
+	font-size:1.8rem;
+}
+
+
+/*SECCION INFERIOR*/
+
+@media (min-width:768px){
+	
+	.seccion-inferior{
+		display: flex;
+		justify-content:space-between;
+	}
+
+	.seccion-inferior .blog{
+		flex-basis: 60%;
+	}
+
+	.seccion-inferior .testimoniales{
+		flex-basis: calc(40% - 2rem);
+	}
+
+}
+
+.entrada-blog{
+		
+	margin-bottom: 2rem;
+}
+
+@media (min-width:768px){
+	
+	.entrada-blog{
+		display:flex;					/*este codigo es para que los elementos que estan dentro 
+										de esta clase (imagen,texto)se pongan de forma horizantal 
+										o de izquierda a derecha*/
+		
+		justify-content:space-between;	/*este codigo es para que se distribuyan los elementos */
+	}
+}
+
+.entrada-blog:last-of-type{
+	margin-bottom: 0;
+}
+
+
+@media (min-width:768px){
+	
+	.entrada-blog .imagen{
+		flex-basis: 40%;
+	}
+
+	.entrada-blog .texto-entrada{
+		flex-basis: calc(60% - 2rem);
+
+	}
+
+}
+
+.texto-entrada h4{
+	line-height: 1.2;
+	margin: 0;
+	/*margin-bottom: 2rem;*/
+}
+
+.texto-entrada a {
+	color:black;
+	text-decoration:none;
+}
+
+.texto-entrada h4::after {  	/*esto se conoce como pseudoelementos, en este caso se hizo una barra de color verde
+								despues del h4*/
+	
+	background-color: #71B100;
+	content:'';
+	display: block;
+	height: .5rem;
+	margin-top:1rem;
+	width: 15rem;
+}
+
+.texto-entrada span{
+	color: #e08709;
+}
+
+.testimonial{
+
+	background-color: #71B100;
+	border-radius: 2rem;
+	color:white;
+	font-size: 2.4rem;
+	height:48rem;
+	margin-bottom: 4rem;
+	padding:3rem;
+	
+	
+}
+
+.testimonial p{
+	text-align: right;
+}
+
+.testimonial blockquote::before{ /*otro pseudoelemento, en este caso se accedio a una imagen de la carpeta img y
+									se coloco antes del blockquote, pero se coloco despues del blockquote*/	
+	content:"";
+	background-image: url(../img/comilla.svg);
+	height: 4rem;
+	position: absolute;			/*siempre los elementos se deben de poner en posicion absolute*/
+	left: -5rem;
+	height:6rem;
+	width: 5rem;
+}
+
+
+.testimonial blockquote {
+	font-weight: 300;
+	position:relative;			/*el padre del elemento que se va hacer siempre tiene que tener una posicion relative*/
+	/*padding-left: 5rem;*/
+	margin-top:0;
+}
+
+/*	ESTILOS PARA EL FOOTER	*/
+
+.site-footer{
+	background-color: #333333;			/*esta propiedad es para cambiar el color de fondo*/
+	margin:0;							/*esta propiedad es para eliminar margen en los cuatro lados del footer*/			
+}
+
+.site-footer nav{
+	display:none;
+}
+
+@media (min-width:768px){
+	
+	.site-footer nav {
+		display:inline-block;
+	}
+}
+
+
+.contenedor-footer{				/*esta clase se creo para poder aplicar flexbox en los elementos hijo (nav,p)*/
+	padding: 3rem 0;				/*esta propiedad es para dar espacio hacia adentro */
+	text-align:center;
+}
+
+@media (min-width:768px){
+	
+	.contenedor-footer{
+		display:flex;						/*esta propiedad ses para poder manipular los elementos*/
+		justify-content:space-between;		/*esta propiedad es para distribuir los elementos 
+											hijo en el div */	
+	}
+	
+}
+
+.copyright{
+	color:white;
+	margin: 0;
+}
+
+
+/*ESTILOS PARA LA PAGINA DE NOSOTROS*/
+
+.site-header{	
+	background-color: #333333;
+	padding: 1rem 0 3rem 0;
+}
+
+.contenido-nosotros{
+	display: grid;
+	grid-template-columns: repeat(2,50%); /*diferentes valores que puede tomar esta propiedad: repeat(2,50%), 50% 50%
+											e incluso se pueden poner valores de px rem etc*/	
+											/*esta propiedad es para distribuir los elementos hijos de esta clase
+											en este caso la imagen de nosotros y el div de los textos*/
+	grid-column-gap: 2rem;
+}
+
+.texto-nosotros blockquote{
+	font-weight: 700;
+	font-size: 2rem;
+	margin: 0;
+}
+
+/*ESTILOS PARA LA PAGINA DE anuncio*/
+
+.resumen-propiedad{
+	display:flex;
+	justify-content:space-between;	
+	align-items:center;
+}
+
+/*ESTILOS DE LABELS DE LA PAGINA DE contacto.html*/
+
+input:not([type="submit"]),select,textarea{		/*este selector es para aplicar estilos a todos los inputs excepto a los de 
+								tipo submit. Otra opcion es aplicar estilos por medio de clases pero es la
+								segunda opcion*/
+	background-color:#e1e1e1;
+	border:none;
+	display:block;	
+	margin-bottom:2rem;
+	padding:1rem;
+	width:100%;
+}
+
+input[type="radio"]{
+	
+	margin:0;
+	width:auto;
+	
+}
+
+label{
+	display: block;
+	text-transform:uppercase;
+}
+
+select{
+	-webkit-appearance:none;	/*estas propiedades son para dar padding al select los dos*/
+	appearance:none;		
+}
+
+textarea{
+max-height: 20rem;
+min-height:20rem;
+}
+
+legend{
+	color:#333333;
+	font-weight:700;
+}
+
+form p {
+	color:#4f4f4f;
+	font-size:1.6rem;
+	margin-bottom:0;
+}
+
+.forma-contacto{
+	align-items:center;
+	display:flex;
+	justify-content:space-between;
+	max-width:30rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
